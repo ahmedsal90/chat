@@ -1,0 +1,44 @@
+<!-- في ملف index.html -->
+<!DOCTYPE html>
+<html lang="ar">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>موقع الرسائل الجماعية</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <div class="container">
+        <header>
+            <h1>أهلاً بك في Chat جامعة المعقل</h1>
+        </header>
+        
+        <div class="content">
+            <!-- قسم الملف الشخصي (اليمين) -->
+            <div class="profile-section">
+                <div class="profile-info">
+                    <img id="profileImage" src="default-profile.png" alt="Profile Image" class="profile-img">
+                    <input type="file" id="imageUpload" accept="image/*">
+                    <p id="userName">اسم المستخدم: <span id="displayName">أحمد</span></p>
+                    <input type="text" id="userNameInput" placeholder="أدخل اسم المستخدم" style="display: none;">
+                    <button id="editNameBtn">تعديل الاسم</button>
+                    <button id="saveNameBtn" style="display: none;">حفظ الاسم</button>
+                    <button id="cancelEditBtn" style="display: none;">إلغاء التعديل</button>
+                </div>
+            </div>
+
+            <!-- قسم الرسائل (المنتصف) -->
+            <div class="chat-container">
+                <div class="messages" id="messages">
+                    <!-- الرسائل ستظهر هنا -->
+                </div>
+
+                <input type="text" id="messageInput" placeholder="اكتب رسالتك هنا...">
+                <button id="sendMessageBtn">إرسال</button>
+            </div>
+        </div>
+    </div>
+
+    <script src="script.js"></script>
+</body>
+</html>
