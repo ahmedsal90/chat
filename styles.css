@@ -1,4 +1,4 @@
-/* في ملف styles.css */
+/* تنسيق صفحة الموقع */
 body {
     font-family: Arial, sans-serif;
     background-color: #333;
@@ -27,7 +27,6 @@ h1 {
 .content {
     display: flex;
     justify-content: space-between;
-    align-items: flex-start;
     gap: 20px;
 }
 
@@ -39,24 +38,42 @@ h1 {
     text-align: center;
 }
 
-.chat-container {
+.message-section {
     background-color: #444;
     padding: 20px;
     border-radius: 8px;
     width: 65%;
 }
 
-/* تنسيق الملف الشخصي */
-.profile-img {
-    width: 100px;
-    height: 100px;
-    border-radius: 50%;
-    object-fit: cover;
+.messages {
+    height: 300px;
+    overflow-y: scroll;
+    border-bottom: 1px solid #777;
+    margin-bottom: 10px;
+    background-color: #555;
 }
 
-input[type="file"] {
-    display: block;
-    margin: 10px auto;
+.message {
+    background-color: #666;
+    margin: 10px 0;
+    padding: 10px;
+    border-radius: 8px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.deleteBtn {
+    background-color: red;
+    color: white;
+    border: none;
+    padding: 5px 10px;
+    border-radius: 4px;
+    cursor: pointer;
+}
+
+.deleteBtn:hover {
+    background-color: darkred;
 }
 
 button {
@@ -66,21 +83,13 @@ button {
     border-radius: 4px;
     color: #fff;
     cursor: pointer;
-    margin: 10px;
 }
 
 button:hover {
     background-color: #555;
 }
 
-#userNameInput {
-    padding: 10px;
-    width: 60%;
-    margin-top: 10px;
-}
-
-/* تنسيق الرسائل */
-#messageInput {
+input[type="text"] {
     width: 80%;
     padding: 10px;
     margin-right: 10px;
@@ -88,22 +97,49 @@ button:hover {
     border-radius: 4px;
 }
 
-#sendMessageBtn {
+#loading {
+    position: fixed;
+    top: 20px;
+    right: 20px;
+    background-color: #4CAF50;
+    color: white;
     padding: 10px 20px;
-    background-color: #888;
-    border: none;
-    border-radius: 4px;
-    color: #fff;
-    cursor: pointer;
+    border-radius: 5px;
+    font-size: 16px;
+    opacity: 0;
+    animation: fadeIn 0.5s forwards;
 }
 
-#sendMessageBtn:hover {
+@keyframes fadeIn {
+    to {
+        opacity: 1;
+    }
+}
+
+/* تأثير Hover على الأزرار */
+button:hover {
     background-color: #555;
+    transform: scale(1.05);
+    transition: transform 0.2s ease-in-out;
 }
 
-.messages {
-    margin-bottom: 20px;
-    height: 300px;
-    overflow-y: scroll;
-    border-bottom: 1px solid #777;
+/* تأثير Hover على الرسائل */
+.message:hover {
+    background-color: #777;
+    transform: scale(1.02);
+    transition: transform 0.2s ease-in-out;
+}
+
+/* تنسيق الإشعارات */
+.notification {
+    position: fixed;
+    top: 20px;
+    right: 20px;
+    background-color: #4CAF50;
+    color: white;
+    padding: 10px 20px;
+    border-radius: 5px;
+    font-size: 16px;
+    opacity: 0;
+    animation: fadeIn 0.5s forwards;
 }
