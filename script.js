@@ -1,7 +1,3 @@
-// استيراد مكتبة Firebase
-import { initializeApp } from "https://www.gstatic.com/firebasejs/9.6.1/firebase-app.js";
-import { getDatabase, ref, set, get, child } from "https://www.gstatic.com/firebasejs/9.6.1/firebase-database.js";
-
 // إعداد Firebase
 const firebaseConfig = {
     apiKey: "YOUR_API_KEY",  // ضع هنا الـ API Key الخاصة بك
@@ -19,11 +15,18 @@ const db = getDatabase(app);
 
 // دالة لإرسال الرسائل إلى Firebase
 function sendMessageToFirebase(message) {
-    const messageRef = ref(db, 'messages/' + Date.now());
-    set(messageRef, {
-        message: message,
-        timestamp: Date.now()
-    });
+    if (message.trim() !== "") { // التأكد من أن الرسالة ليست فارغة
+        const messageRef = ref(db, 'messages/' + Date.now()); // استخدام الوقت كمعرف فريد للرسالة
+        set(messageRef, {
+            message: message,
+            timestamp: Date.now()
+        }).then(() => {
+            console.log("تم إرسال الرسالة بنجاح");
+            loadMessagesFromFirebase();  // تحديث قائمة الرسائل
+        }).catch((error) => {
+            console.error("فشل في إرسال الرسالة: ", error);
+        });
+    }
 }
 
 // دالة لتحميل الرسائل من Firebase
@@ -48,7 +51,7 @@ function loadMessagesFromFirebase() {
             });
         }
     }).catch((error) => {
-        console.error(error);
+        console.error("خطأ في تحميل الرسائل: ", error);
     });
 }
 
@@ -61,9 +64,8 @@ document.getElementById('sendMessageBtn').addEventListener('click', function() {
     var message = messageInput.value.trim();
 
     if (message !== '') {
-        sendMessageToFirebase(message);
+        sendMessageToFirebase(message);  // إرسال الرسالة إلى Firebase
         messageInput.value = '';  // مسح الحقل بعد الإرسال
-        loadMessagesFromFirebase();  // تحديث الرسائل
     } else {
         alert('يرجى كتابة رسالة قبل الإرسال');
     }
